@@ -30,9 +30,6 @@
       "lib"
     ]
   },
-  "peerDependencies": {
-    "jss": "^7.1.1"
-  },
   "devDependencies": {
     "babel-cli": "^6.24.1",
     "babel-jest": "^19.0.0",
@@ -41,13 +38,13 @@
     "coveralls": "^2.13.1",
     "husky": "^0.13.3",
     "jest": "^19.0.2",
-    "jss": "^7.1.1",
     "lint-staged": "^3.4.1",
     "np": "^2.14.1",
     "rimraf": "^2.6.1",
     "standard": "^5.4.1"
   },
   "dependencies": {
+    "jss": "^7.1.1",
     "jss-preset-default": "^2.0.0"
   }
 }
