@@ -68,4 +68,4 @@ function clear() {
  */
 
 export default css;
-export { use, setup, toString, attach, detach, clear };
+export { use, toString, attach, detach, clear };
