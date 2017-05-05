@@ -25,7 +25,7 @@ function register(style) {
   return Object.keys(style).reduce((map, name) => {
     map['@global'][name] = {
       className: generateClassName(name, JSON.stringify(style[name])),
-      style: styles[name]
+      style: style[name]
     }
     return map
   }, { '@global': {} })
