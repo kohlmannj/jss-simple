@@ -4,11 +4,15 @@
 
 import { create } from 'jss'
 import preset from 'jss-preset-default'
+import hash from 'murmurhash-js/murmurhash3_gc'
 
 /**
  * Constants
  */
 
+const defaultOpts = { meta }
+const meta = 'jss-simple'
+const generateClassName = (name, str) => `${name}-${hash(name + str + meta)}`
 let jss = create(preset())
 let sheets = []
 let map = {}
@@ -17,8 +21,14 @@ let map = {}
  * JSS Simple
  */
 
-const defaultOpts = {
-  meta: 'jss-simple'
+function register(style) {
+  return Object.keys(style).reduce((map, name) => {
+    map['@global'][name] = {
+      className: generateClassName(name, JSON.stringify(style[name])),
+      style: styles[name]
+    }
+    return map
+  }, { '@global': {} })
 }
 
 function css(style, opts, key) {
@@ -38,7 +48,9 @@ function css(style, opts, key) {
     localOpts = defaultOpts
   }
 
-  const sheet = jss.createStyleSheet(style, localOpts)
+  const registeredStyle = register(style)
+
+  const sheet = jss.createStyleSheet(registeredStyle, localOpts)
 
   if (localKey !== undefined) {
     if (map[localKey] !== undefined) {
