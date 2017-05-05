@@ -17,13 +17,25 @@ let map = {};
  * JSS Simple
  */
 
+const defaultOpts = {
+  meta: 'jss-simple'
+};
+
 function css(style, opts, key) {
   let localKey = key;
-  let localOpts = opts;
+  let localOpts;
 
-  if (typeof opts === 'string') {
+  if (typeof opts === 'object' && opts !== null) {
+    // Merge with defaultOpts
+    localOpts = {
+      ...defaultOpts,
+      ...opts
+    };
+  }
+
+  else if (typeof opts === 'string') {
     localKey = opts;
-    localOpts = undefined;
+    localOpts = defaultOpts;
   }
 
   const sheet = jss.createStyleSheet(style, localOpts);
