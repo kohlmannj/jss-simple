@@ -8,7 +8,7 @@ import { create } from 'jss';
  * Constants
  */
 
-const jss = create();
+let jss;
 let sheets = [];
 let map = {};
 
@@ -17,6 +17,10 @@ let map = {};
  */
 
 function css(style, opts, key) {
+  if (typeof jss === 'undefined') {
+    jss = create();
+  }
+
   let localKey = key;
   let localOpts = opts;
 
@@ -53,12 +57,22 @@ function toString() {
 }
 
 function use(plugin) {
+  if (typeof jss === 'undefined') {
+    jss = create();
+  }
+
   jss.use(plugin);
+
   return { use, toString, attach };
 }
 
 function setup(options) {
-  jss.setup(options);
+  if (typeof jss === 'undefined') {
+    jss = create(options);
+  } else {
+    console.warn('Creating a second new JSS instance');
+  }
+
   return { use, toString, attach };
 }
 
