@@ -19,7 +19,8 @@
     "postpublish": "rimraf lib",
     "precommit": "lint-staged",
     "prepublish": "npm run test && npm run build",
-    "test": "jest --coverage"
+    "test": "jest --coverage",
+    "watch": "npm run build -- --watch"
   },
   "jest": {
     "collectCoverage": true,
