@@ -2,9 +2,7 @@
 # jss-simple
 
 [![Build Status](https://travis-ci.org/kohlmannj/jss-simple.svg?branch=master)](https://travis-ci.org/kohlmannj/jss-simple)
-
 [![Coverage Status](https://coveralls.io/repos/github/kohlmannj/jss-simple/badge.svg?branch=master)](https://coveralls.io/github/kohlmannj/jss-simple?branch=master)
-
 [![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg?style=flat)](https://github.com/feross/standard)
 
 Thin wrapper around [jss](https://github.com/jsstyles/jss) that simplifies its interface and restricts you to a single, global stylesheet.
