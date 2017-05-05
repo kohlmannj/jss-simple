@@ -2,72 +2,69 @@
  * Imports
  */
 
-import {create} from 'jss'
+import { create } from 'jss';
 
 /**
  * Constants
  */
 
-const jss = create()
-let sheets = []
-let map = {}
+const jss = create();
+let sheets = [];
+let map = {};
 
 /**
  * JSS Simple
  */
 
-function css (style, opts, key) {
-  if ('string' === typeof opts) {
-    key = opts
-    opts = undefined
+function css(style, opts, key) {
+  let localKey = key;
+  let localOpts = opts;
+
+  if (typeof opts === 'string') {
+    localKey = opts;
+    localOpts = undefined;
   }
 
-  const sheet = jss.createStyleSheet(style, opts)
+  const sheet = jss.createStyleSheet(style, localOpts);
 
-  if (key !== undefined) {
-    if (map[key] !== undefined) {
-      sheets[map[key]] = sheet
-      return sheet.classes
+  if (localKey !== undefined) {
+    if (map[localKey] !== undefined) {
+      sheets[map[localKey]] = sheet;
+      return sheet.classes;
     }
 
-    map[key] = sheets.length
+    map[localKey] = sheets.length;
   }
 
-  sheets.push(sheet)
-  return sheet.classes
+  sheets.push(sheet);
+  return sheet.classes;
 }
 
-function use (plugin) {
-  jss.use(plugin)
-  return {use, toString, attach}
+function attach() {
+  return sheets.forEach(sheet => sheet.attach());
 }
 
-function toString () {
-  return sheets.map(sheet => sheet.toString()).join('\n')
+function detach() {
+  return sheets.forEach(sheet => sheet.detach());
 }
 
-function attach () {
-  return sheets.forEach(sheet => sheet.attach())
+function toString() {
+  return sheets.map(sheet => sheet.toString()).join('\n');
 }
 
-function detach () {
-  return sheets.forEach(sheet => sheet.detach())
+function use(plugin) {
+  jss.use(plugin);
+  return { use, toString, attach };
 }
 
-function clear () {
-  sheets = []
-  map = {}
+function clear() {
+  sheets = [];
+  map = {};
 }
 
 /**
  * Exports
  */
 
-export default css
-export {
-  use,
-  toString,
-  attach,
-  detach,
-  clear
-}
+export default css;
+export { use, toString, attach, detach, clear };
