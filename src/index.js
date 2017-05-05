@@ -23,12 +23,21 @@ let map = {}
 
 function register(style) {
   return Object.keys(style).reduce((map, name) => {
-    map['@global'][name] = {
-      className: generateClassName(name, JSON.stringify(style[name])),
-      style: style[name]
+    let className;
+
+    if (name.match(/^\w+$/) !== null) {
+      className = generateClassName(name, JSON.stringify(style[name]))
+      map.classes.push({
+        name,
+        className,
+        style: style[name]
+      })
+    } else {
+      map.globals[name] = style[name]
     }
+
     return map
-  }, { '@global': {} })
+  }, { classes: [], globals: {} })
 }
 
 function css(style, opts, key) {
@@ -48,9 +57,13 @@ function css(style, opts, key) {
     localOpts = defaultOpts
   }
 
-  const registeredStyle = register(style)
+  const { classes, globals } = register(style)
 
-  const sheet = jss.createStyleSheet(registeredStyle, localOpts)
+  const sheet = jss.createStyleSheet(globals, localOpts)
+
+  classes.forEach(({ name, className, style }) => {
+    sheet.addRule(name, style, { className })
+  })
 
   if (localKey !== undefined) {
     if (map[localKey] !== undefined) {
