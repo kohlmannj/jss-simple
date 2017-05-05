@@ -1,5 +1,5 @@
 {
-  "name": "jss-simple",
+  "name": "@kohlmannj/jss-simple",
   "description": "Thin wrapper around jss that simplifies its interface and restricts you to a single stylesheet.",
   "repository": "git://github.com/ashaffer/jss-simple.git",
   "version": "0.4.0-beta.6",
@@ -13,7 +13,6 @@
   "files": [
     "lib"
   ],
-  "private": true,
   "scripts": {
     "build": "babel src --out-dir lib",
     "lint-script": "standard --fix {src,__test__}/**/*.js",
