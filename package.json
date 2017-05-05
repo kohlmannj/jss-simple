@@ -47,5 +47,8 @@
     "np": "^2.14.1",
     "rimraf": "^2.6.1",
     "standard": "^5.4.1"
+  },
+  "dependencies": {
+    "jss-preset-default": "^2.0.0"
   }
 }
