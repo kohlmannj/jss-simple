@@ -8,6 +8,7 @@
   "files": [
     "lib"
   ],
+  "private": true,
   "scripts": {
     "build": "babel src --out-dir lib",
     "lint-script": "eslint --fix {src,__test__}/**/*.js",
@@ -45,6 +46,7 @@
     "husky": "^0.13.3",
     "jest": "^19.0.2",
     "lint-staged": "^3.4.1",
+    "np": "^2.14.1",
     "prettier": "^1.3.1",
     "rimraf": "^2.6.1",
     "standard": "^5.4.1"
