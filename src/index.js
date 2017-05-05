@@ -57,6 +57,11 @@ function use(plugin) {
   return { use, toString, attach };
 }
 
+function setup(options) {
+  jss.setup(options);
+  return { use, toString, attach };
+}
+
 function clear() {
   sheets = [];
   map = {};
@@ -67,4 +72,4 @@ function clear() {
  */
 
 export default css;
-export { use, toString, attach, detach, clear };
+export { use, setup, toString, attach, detach, clear };
