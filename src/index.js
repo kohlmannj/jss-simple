@@ -10,8 +10,11 @@ import hash from 'murmurhash-js/murmurhash3_gc'
  * Constants
  */
 
-const defaultOpts = { meta }
 const meta = 'jss-simple'
+const defaultOpts = {
+  meta,
+  insertionPoint: 'jss-simple'
+}
 const generateClassName = (name, str) => `${name}-${hash(name + str + meta)}`
 let jss = create(preset())
 let sheets = []
@@ -21,9 +24,9 @@ let map = {}
  * JSS Simple
  */
 
-function register(style) {
+function register (style) {
   return Object.keys(style).reduce((map, name) => {
-    let className;
+    let className
 
     if (name.match(/^\w+$/) !== null) {
       className = generateClassName(name, JSON.stringify(style[name]))
@@ -40,7 +43,7 @@ function register(style) {
   }, { classes: [], globals: {} })
 }
 
-function css(style, opts, key) {
+function css (style, opts, key) {
   let localKey = key
   let localOpts
 
@@ -50,9 +53,7 @@ function css(style, opts, key) {
       ...defaultOpts,
       ...opts
     }
-  }
-
-  else if (typeof opts === 'string') {
+  } else if (typeof opts === 'string') {
     localKey = opts
     localOpts = defaultOpts
   }
@@ -78,24 +79,24 @@ function css(style, opts, key) {
   return sheet.classes
 }
 
-function attach() {
+function attach () {
   return sheets.forEach(sheet => sheet.attach())
 }
 
-function detach() {
+function detach () {
   return sheets.forEach(sheet => sheet.detach())
 }
 
-function toString() {
+function toString () {
   return sheets.map(sheet => sheet.toString()).join('\n')
 }
 
-function use(plugin) {
+function use (plugin) {
   jss.use(plugin)
   return { use, toString, attach }
 }
 
-function clear() {
+function clear () {
   sheets = []
   map = {}
 }

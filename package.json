@@ -45,8 +45,10 @@
     "standard": "^5.4.1"
   },
   "dependencies": {
-    "jss": "^7.1.1",
-    "jss-preset-default": "^2.0.0",
     "murmurhash-js": "^1.0.0"
+  },
+  "peerDependencies": {
+    "jss": "^7.1.2",
+    "jss-preset-default": "^2.0.0"
   }
 }
