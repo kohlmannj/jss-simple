@@ -42,7 +42,9 @@
     "lint-staged": "^3.4.1",
     "np": "^2.14.1",
     "rimraf": "^2.6.1",
-    "standard": "^5.4.1"
+    "standard": "^5.4.1",
+    "jss": "^7.1.2",
+    "jss-preset-default": "^2.0.0"
   },
   "dependencies": {
     "murmurhash-js": "^1.0.0"
