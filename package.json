@@ -2,7 +2,7 @@
   "name": "@kohlmannj/jss-simple",
   "description": "Thin wrapper around jss that simplifies its interface and restricts you to a single stylesheet.",
   "repository": "git://github.com/kohlmannj/jss-simple.git",
-  "version": "0.5.2",
+  "version": "0.5.3",
   "license": "MIT",
   "main": "lib/index.js",
   "author": "Andrew Shaffer",
@@ -39,12 +39,12 @@
     "coveralls": "^2.13.1",
     "husky": "^0.13.3",
     "jest": "^19.0.2",
+    "jss": "^7.1.2",
+    "jss-preset-default": "^2.0.0",
     "lint-staged": "^3.4.1",
     "np": "^2.14.1",
     "rimraf": "^2.6.1",
-    "standard": "^5.4.1",
-    "jss": "^7.1.2",
-    "jss-preset-default": "^2.0.0"
+    "standard": "^5.4.1"
   },
   "dependencies": {
     "murmurhash-js": "^1.0.0"
