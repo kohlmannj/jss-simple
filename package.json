@@ -19,7 +19,7 @@
     "postpublish": "rimraf lib",
     "precommit": "lint-staged",
     "prepublish": "npm run test && npm run build",
-    "postinstall": "install-self-peers -- --ignore-scripts",
+    "peerinstall": "install-self-peers -- --ignore-scripts",
     "test": "jest --coverage",
     "watch": "npm run build -- --watch"
   },
